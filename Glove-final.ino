@@ -104,32 +104,24 @@ const int startDelay=250; // quarter of a second
   int mytime=millis();
   
 void setup()  {
-  Serial.begin(115200);
   pinMode(LED_BUILTIN, OUTPUT);
   for (int i=0; i< 7; i++){
-  pinMode(leds[i], OUTPUT);
-  
+     pinMode(leds[i], OUTPUT);  
   }
 }
 
 void loop()
 {
- // sendByteOut(255);
   digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
-   delay(startDelay);                      // wait for a second
+  delay(startDelay);                      // wait for a second
 
   for ( int letter=0; letter < (sizeof(textString)-1); letter++){
-    Serial.println(letter);
-    Serial.println(textString[letter] -32);
     printLetter(textString[letter] -32, false);
   }
-
   delay(myDelay*4);
   
   for ( int letter=(sizeof(textString)-1); letter >-1 ; letter--){
-    Serial.println(letter);
-   // Serial.println(textString[letter] -32);
-    printLetter(textString[letter] -32, false);
+    printLetter(textString[letter] -32, true);
   }
   digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
   delay(myDelay*4);
@@ -147,7 +139,7 @@ void sendByteOut(byte value) {
 
   delay(myDelay);
   for (int i=0; i< 7; i++){
-  digitalWrite(leds[i], LOW);
+      digitalWrite(leds[i], LOW);
   }
 }
 
